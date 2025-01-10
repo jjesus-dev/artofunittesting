@@ -14,7 +14,7 @@ namespace LogAn.UnitTests {
         [Test]
         [Category("Fluent Syntax")]
         public void IsValidFileName_EmptyFileName_ThrowsFluent() {
-            var ex = Assert.Catch<ArgumentException>(() => analizer.IsEmptyFileName(""));
+            var ex = Assert.Catch<ArgumentException>(() => analizer.IsValidLogFileName(""));
 
             Assert.That(ex.Message, Does.Contain("filename has to be provided"));
         }
