@@ -33,5 +33,11 @@ namespace LogAn.UnitTests {
             bool result = analizer.IsValidLogFileName(file);
             Assert.True(result);
         }
+
+        [Test]
+        public void IsValidFileName_WhenCalled_ChangesWasLastFileNameValid() {
+            analizer.IsValidLogFileName("badname.foo");
+            Assert.False(analizer.WasLastFileNameValid);
+        }
     }
 }

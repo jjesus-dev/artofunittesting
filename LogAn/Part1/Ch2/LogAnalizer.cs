@@ -10,7 +10,12 @@ namespace LogAn {
                 return false;
             }
 
+            // Changes the state of the system
+            WasLastFileNameValid = true;
+
             return true;
         }
+
+        public bool WasLastFileNameValid { get; set; }
     }
 }
