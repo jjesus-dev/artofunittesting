@@ -12,11 +12,11 @@ namespace LogAn.UnitTests {
         }
 
         [Test]
-        [Ignore("omitting this test")]
-        public void IsValidFileName_EmptyFileName_Throws() {
-            var ex = Assert.Catch<Exception>(() => analizer.IsEmptyFileName(""));
+        [Category("Fluent Syntax")]
+        public void IsValidFileName_EmptyFileName_ThrowsFluent() {
+            var ex = Assert.Catch<ArgumentException>(() => analizer.IsEmptyFileName(""));
 
-            StringAssert.Contains("filename has to be provided", ex.Message);
+            Assert.That(ex.Message, Does.Contain("filename has to be provided"));
         }
 
         [TestCase("filewithbadextension.SLF", true)]
