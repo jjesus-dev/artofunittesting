@@ -34,10 +34,11 @@ namespace LogAn.UnitTests {
             Assert.True(result);
         }
 
-        [Test]
-        public void IsValidFileName_WhenCalled_ChangesWasLastFileNameValid() {
-            analizer.IsValidLogFileName("badname.foo");
-            Assert.False(analizer.WasLastFileNameValid);
+        [TestCase("badfile.foo", false)]
+        [TestCase("goodfile.slf", true)]
+        public void IsValidFileName_WhenCalled_ChangesWasLastFileNameValid(string file, bool expected) {
+            analizer.IsValidLogFileName(file);
+            Assert.That(analizer.WasLastFileNameValid, Is.EqualTo(expected));
         }
     }
 }
