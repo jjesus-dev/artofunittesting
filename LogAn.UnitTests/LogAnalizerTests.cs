@@ -11,6 +11,14 @@ namespace LogAn.UnitTests {
             analizer = new LogAnalizer();
         }
 
+        [Test]
+        [Ignore("omitting this test")]
+        public void IsValidFileName_EmptyFileName_Throws() {
+            var ex = Assert.Catch<Exception>(() => analizer.IsEmptyFileName(""));
+
+            StringAssert.Contains("filename has to be provided", ex.Message);
+        }
+
         [TestCase("filewithbadextension.SLF", true)]
         [TestCase("filewithbadextension.slf", true)]
         [TestCase("filewithbadextension.foo", false)]
