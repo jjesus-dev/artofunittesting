@@ -16,6 +16,7 @@ A) Aplicación de consola (dentro en la carpeta raíz)
 ``dotnet new console -o LogAn``
 
 B) Aplicación de consola (fuera en la carpeta raíz)
+
 ``dotnet new console -o artofunittesting.LogAn``
 
 Agregar el proyecto a la solución
