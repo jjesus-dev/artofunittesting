@@ -1,6 +1,6 @@
-using LogAn.ch3;
+using LogAn.Ch3;
 
-namespace LogAn.ch3 {
+namespace LogAn.Ch3 {
     public class ExtensionManagerFactory {
         private static IExtensionManager? customManager = null;
 

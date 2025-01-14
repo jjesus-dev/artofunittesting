@@ -1,6 +1,6 @@
-using LogAn.ch3;
+using LogAn.Ch3;
 
-namespace LogAn.ch3.UnitTests {
+namespace LogAn.Ch3.UnitTests {
     internal class FakeExtensionManager : IExtensionManager {
         public bool WillBeValid = false;
 

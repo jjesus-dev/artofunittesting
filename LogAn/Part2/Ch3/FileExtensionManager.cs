@@ -1,4 +1,4 @@
-namespace LogAn.ch3 {
+namespace LogAn.Ch3 {
     class FileExtensionManager : IExtensionManager {
         public bool IsValid(string fileName) {
             // read some file here

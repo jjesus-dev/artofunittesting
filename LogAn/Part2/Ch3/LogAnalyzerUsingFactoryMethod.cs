@@ -1,4 +1,4 @@
-namespace LogAn.ch3 {
+namespace LogAn.Ch3 {
     public class LogAnalyzerUsingFactoryMethod { 
         public bool IsValidLogFileName(string fileName) {
             return this.IsValid(fileName);

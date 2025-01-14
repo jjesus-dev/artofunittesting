@@ -1,4 +1,4 @@
-namespace LogAn.ch3 {
+namespace LogAn.Ch3 {
     public class LogAnalyzer {
         private IExtensionManager eManager;
 

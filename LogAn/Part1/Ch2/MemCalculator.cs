@@ -1,4 +1,4 @@
-namespace LogAn {
+namespace LogAn.Ch2 {
     public class MemCalculator {
         private int sum = 0;
 

@@ -1,4 +1,4 @@
-namespace LogAn {
+namespace LogAn.Ch2 {
     public class LogAnalyzer {
         public bool IsValidLogFileName(string fileName) {
             if(string.IsNullOrEmpty(fileName)) {
