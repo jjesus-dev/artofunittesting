@@ -1,11 +1,14 @@
 namespace LogAn.ch3 {
     public class LogAnalyzerUsingFactoryMethod { 
         public bool IsValidLogFileName(string fileName) {
-            return GetManager().IsValid(fileName);
+            return this.IsValid(fileName);
         }
 
-        protected virtual IExtensionManager GetManager() {
-            return new FileExtensionManager();
+        protected virtual bool IsValid(string fileName) {
+            FileExtensionManager eManager = new FileExtensionManager();
+
+            // returns result from real dependency
+            return eManager.IsValid(fileName);
         }
     }
 }
