@@ -3,7 +3,7 @@ namespace LogAn.ch3 {
         private IExtensionManager eManager;
 
         public LogAnalyzer() {
-            eManager = new FileExtensionManager();
+            eManager = ExtensionManagerFactory.Create();
         }
 
         public IExtensionManager ExtensionManager {

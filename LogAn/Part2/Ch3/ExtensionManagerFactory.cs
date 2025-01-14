@@ -1,7 +1,7 @@
 using LogAn.ch3;
 
-namespace LogAn.ch3.UnitTests {
-    class ExtensionManagerFactory {
+namespace LogAn.ch3 {
+    public class ExtensionManagerFactory {
         private static IExtensionManager? customManager = null;
 
         public static IExtensionManager Create() {

@@ -5,10 +5,14 @@ namespace LogAn.ch3.UnitTests {
     [TestFixture]
     public class LogAnalyzerTests {
         [Test]
-        public void IsValidFileName_NameSupportedExtension_ReturnTrue() {
+        public void IsValidFileName_SupportedExtension_ReturnTrue() {
+            // set up the stub to use, make sure it returns true
             FakeExtensionManager myFakeManager = new FakeExtensionManager();
             myFakeManager.WillBeValid = true;
 
+            ExtensionManagerFactory.SetManager(myFakeManager);
+
+            // create analyzer and inject stub
             LogAnalyzer logAn = new LogAnalyzer();
             logAn.ExtensionManager = myFakeManager;
 
