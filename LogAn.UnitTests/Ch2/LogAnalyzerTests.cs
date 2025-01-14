@@ -1,6 +1,6 @@
-using LogAn;
+using LogAn.Ch2;
 
-namespace LogAn.UnitTests {
+namespace LogAn.Ch2.UnitTests {
 
     [TestFixture]
     public class LogAnalyzerTests {
