@@ -2,8 +2,13 @@ namespace LogAn.ch3 {
     public class LogAnalyzer {
         private IExtensionManager eManager;
 
-        public LogAnalyzer(IExtensionManager mngr) {
-            eManager = mngr;
+        public LogAnalyzer() {
+            eManager = new FileExtensionManager();
+        }
+
+        public IExtensionManager ExtensionManager {
+            get { return eManager; }
+            set { eManager = value; }
         }
 
         public bool IsValidLogFileName(string fileName) {
