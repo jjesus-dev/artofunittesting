@@ -19,7 +19,11 @@ namespace LogAn.Ch4 {
                     myService.LogError("Filename too short: " + fileName);
                 } 
                 catch (Exception e) {
-                    myEmail.SendEmail("someone@somewhere.com", "can't log", e.Message);
+                    myEmail.SendEmail(new EmailInfo {
+                        To = "someone@somewhere.com", 
+                        Body = e.Message,
+                        Subject = "can't log"
+                        });
                 }
             }
         }
