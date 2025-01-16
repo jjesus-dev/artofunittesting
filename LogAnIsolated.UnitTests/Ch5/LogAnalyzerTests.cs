@@ -18,5 +18,15 @@ namespace LogAnIsolated.Ch5.UnitTests {
             // sets expectation using NSubstitute's API
             myLogger.Received().LogError("Filename too short: a.txt");
         }
+
+        [Test]
+        public void Returns_ByDefault_WorksForHardCodedArgument() {
+            IFileNameRules fakeRules = Substitute.For<IFileNameRules>();
+
+            // forces method call to return fake value
+            fakeRules.IsValidLogFileName("strict.txt").Returns(true);
+
+            Assert.IsTrue(fakeRules.IsValidLogFileName("strict.txt"));
+        }
     }
 }
