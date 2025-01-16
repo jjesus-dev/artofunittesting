@@ -24,7 +24,7 @@ namespace LogAnIsolated.Ch5.UnitTests {
             IFileNameRules fakeRules = Substitute.For<IFileNameRules>();
 
             // forces method call to return fake value
-            fakeRules.IsValidLogFileName("strict.txt").Returns(true);
+            fakeRules.IsValidLogFileName(Arg.Any<string>()).Returns(true);
 
             Assert.IsTrue(fakeRules.IsValidLogFileName("strict.txt"));
         }
