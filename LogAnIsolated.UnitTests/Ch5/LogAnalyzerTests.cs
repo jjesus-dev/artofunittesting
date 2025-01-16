@@ -1,4 +1,5 @@
 using LogAnIsolated.Ch5;
+using NSubstitute;
 
 namespace LogAnIsolated.Ch5.UnitTests {
     
@@ -7,13 +8,15 @@ namespace LogAnIsolated.Ch5.UnitTests {
 
         [Test]
         public void Analyze_TooShortFileName_CallLogger() {
-            FakeLogger myLogger = new FakeLogger();
+            // creates a mock object that you'll assert against at the end of the test
+            ILogger myLogger = Substitute.For<ILogger>();
             LogAnalyzer myAnalyzer = new LogAnalyzer(myLogger);
 
             myAnalyzer.MinNameLength = 6;
             myAnalyzer.Analyze("a.txt");
 
-            Assert.That(myLogger.LastError, Does.Contain("too short"));
+            // sets expectation using NSubstitute's API
+            myLogger.Received().LogError("Filename too short: a.txt");
         }
     }
 }
