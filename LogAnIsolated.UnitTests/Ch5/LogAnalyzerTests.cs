@@ -40,18 +40,19 @@ namespace LogAnIsolated.Ch5.UnitTests {
 
         [Test]
         public void Analyze_LoggerThrows_CallsWebService() {
-            FakeWebService mockWebService = new FakeWebService();
+            var mockWebService = Substitute.For<IWebService>();
+            var stubLogger = Substitute.For<ILogger>();
 
-            FakeLogger2 stubLogger = new FakeLogger2();
-            stubLogger.WillThrow = new Exception("fake exception");
+            // simulates an exception on any input
+            stubLogger.When(logger => logger.LogError(Arg.Any<string>()))
+                .Do(info => { throw new Exception("fake exception"); });
 
             var myAnalyzer2 = new LogAnalyzer2(stubLogger, mockWebService);
-            myAnalyzer2.MinNameLength = 8;
+            myAnalyzer2.MinNameLength = 10;
+            myAnalyzer2.Analyze("abc.ext");
 
-            string tooShortFileName = "abc.ext";
-            myAnalyzer2.Analyze(tooShortFileName);
-
-            Assert.That(mockWebService.MessageToWebService, Does.Contain("fake exception"));
+            // checks that the mock web service was called with a string containing "fake exception"
+            mockWebService.Received().Write(Arg.Is<string>(s => s.Contains("fake exception")));
         }
     }
 }
