@@ -7,5 +7,9 @@ namespace LogAnIsolated.Ch5.UnitTests {
         public void Write(string message) {
             MessageToWebService = message;
         }
+
+        public void Write(ErrorInfo errorInfo) {
+            MessageToWebService = errorInfo.Message;
+        }
     }
 }

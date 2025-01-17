@@ -54,5 +54,23 @@ namespace LogAnIsolated.Ch5.UnitTests {
             // checks that the mock web service was called with a string containing "fake exception"
             mockWebService.Received().Write(Arg.Is<string>(s => s.Contains("fake exception")));
         }
+
+        [Test]
+        public void Analyze_LoggerThrows_CallsWebServiceWithNSubObject() {
+            var mockWebService = Substitute.For<IWebService>();
+            var stubLogger = Substitute.For<ILogger>();
+            stubLogger.When(logger => logger.LogError(Arg.Any<string>())).
+                Do(info => { throw new Exception("fake exception"); });
+
+            var myAnalyzer3 = new LogAnalyzer3(stubLogger, mockWebService);
+            myAnalyzer3.MinNameLength = 10;
+            myAnalyzer3.Analyze("Short.txt");
+
+            // strongly typed argument matcher
+            // plus a simple "and" operator to create a more complex condition
+            mockWebService.Received().Write(Arg.Is<ErrorInfo>(
+                info => info.Severity == 1000 && 
+                info.Message.Contains("fake exception")));
+        }
     }
 }
