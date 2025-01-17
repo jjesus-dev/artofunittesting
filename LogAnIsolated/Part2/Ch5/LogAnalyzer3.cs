@@ -16,7 +16,7 @@ namespace LogAnIsolated.Ch5 {
                 } catch (Exception e) {
                     myWebService.Write(new ErrorInfo {
                         Severity = 1000,
-                        Message = "Error from Logger: " + e.Message
+                        Message = e.Message
                     });
                 }
             }
