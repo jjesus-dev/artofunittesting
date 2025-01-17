@@ -37,5 +37,21 @@ namespace LogAnIsolated.Ch5.UnitTests {
 
             Assert.Throws<Exception>(() => fakeRules.IsValidLogFileName("anything"));
         }
+
+        [Test]
+        public void Analyze_LoggerThrows_CallsWebService() {
+            FakeWebService mockWebService = new FakeWebService();
+
+            FakeLogger2 stubLogger = new FakeLogger2();
+            stubLogger.WillThrow = new Exception("fake exception");
+
+            var myAnalyzer2 = new LogAnalyzer2(stubLogger, mockWebService);
+            myAnalyzer2.MinNameLength = 8;
+
+            string tooShortFileName = "abc.ext";
+            myAnalyzer2.Analyze(tooShortFileName);
+
+            Assert.That(mockWebService.MessageToWebService, Does.Contain("fake exception"));
+        }
     }
 }
