@@ -17,5 +17,19 @@ namespace LogAnIsolated.Ch5.UnitTests {
             mockView.Received()
                 .Render(Arg.Is<string>(s => s.Contains("Hello World")));
         }
+
+        [Test]
+        public void ctor_WhenViewHasError_CallsLogger() {
+            var stubView = Substitute.For<IView>();
+            var mockLogger = Substitute.For<ILogger>();
+
+            // simulate the error
+            Presenter pres = new Presenter(stubView, mockLogger);
+            stubView.ErrorOcurred += Raise.Event<Action<string>>("fake error");
+
+            // uses mock to check log call
+            mockLogger.Received()
+                .LogError(Arg.Is<string>(s => s.Contains("fake error")));
+        }
     }
 }
